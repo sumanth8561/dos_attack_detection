@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WSN DoS Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0078d7, #00b7c3);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 15px rgba(0,0,0,0.3);
+            width: 600px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #0078d7;
+        }
+        input[type="file"] {
+            margin: 15px 0;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #0078d7;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>WSN DoS Detection (CSV Upload)</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <p>Upload a CSV file with all 18 features:</p>
+        <input type="file" name="file" accept=".csv">
+        <br>
+        <button type="submit">Classify</button>
+    </form>
+
+    {% if predictions %}
+        <h3>Predictions:</h3>
+        <table>
+            <tr>
+                <th>Row</th>
+                <th>Prediction</th>
+            </tr>
+            {% for p in predictions %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ p }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+</body>
+</html>
